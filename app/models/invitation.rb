@@ -1,4 +1,5 @@
 class Invitation < ApplicationRecord
+
 	include AASM
 
 	validates :email, presence: true
@@ -36,4 +37,5 @@ class Invitation < ApplicationRecord
 	def reject_invitation
 		update_column(:status, 'rejected')
 	end
+
 end
