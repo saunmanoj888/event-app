@@ -1,0 +1,18 @@
+<h1>Events to be attended</h1>
+<%= calendar(events: @events, number_of_days: 1) do |date, events| %>
+  <%= date %>
+  <hr>
+  <% events.each do |event| %>
+    <div>
+      <strong>Name: </strong><%= event.name %>
+    </div>
+    <div>
+      <strong>Duration: </strong><%= event.event_duration %>
+    </div>
+    <div>
+    	<%= link_to "Reject", reject_invitation_path(id: event.associated_invitation.id), class: "btn btn-xs btn-danger" %>
+    </div>
+    <hr>
+  <% end %>
+
+<% end %>

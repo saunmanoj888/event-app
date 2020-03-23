@@ -1,0 +1,26 @@
+<h1 align="center">Listing all Invitation</h1>
+<% @invitations.each do |invitation| %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <div class="event-title">
+          <strong>Name: </strong><%= invitation.event.name %>
+        </div>
+        <div class=".event-description">
+          <strong>Description: </strong><%= truncate(invitation.event.description, length: 100) %>
+        </div>
+        <div>
+          <strong>Status: </strong><%= invitation.status %>
+        </div>
+        <hr>
+        <%= link_to "Accept", accept_invitation_path(id: invitation.id), class: "btn btn-xs btn-success" %>
+        <%= conditional_link({
+          disabled: invitation.rejected?,
+          string: "Reject", 
+          url: reject_invitation_path(id: invitation.id),
+          klass: "btn btn-xs btn-danger"
+        }) %>
+      </div>
+    </div>
+  </div>
+<% end %>
